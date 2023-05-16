@@ -1,0 +1,63 @@
+﻿@model List<Producto>
+
+<h1>Lista de Productos</h1>
+
+<p>
+	<a asp-action="Create" class="btn btn-primary">Agregar Producto</a>
+</p>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Nombre
+			</th>
+			<th>
+				Descripción
+			</th>
+			<th>
+				Cantidad
+			</th>
+			<th>
+				Precio
+			</th>
+			<th>
+				Vendedor
+			</th>
+			<th>
+				Categoría
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var producto in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(m=>producto.NombreProducto)
+				</td>
+				<td>
+					@Html.DisplayFor(m=>producto.Descripcion)
+				</td>
+				<td>
+					@Html.DisplayFor(m=>producto.Cantidad)
+				</td>
+				<td>
+					@Html.DisplayFor(m=>producto.Precio)
+				</td>
+				<td>
+					@Html.DisplayFor(m=>producto.IdVendedorNavigation.NombreVendedor)
+				</td>
+				<td>
+					@Html.DisplayFor(m=>producto.IdCategoriaNavigation.NombreCategoria)
+				</td>
+				<td>
+					<a asp-action="Edit" class="btn btn-warning" asp-route-id="@producto.IdProducto">Editar</a> |
+					<a asp-action="Details" class="btn btn-outline-primary" asp-route-id="@producto.IdProducto">Detalles</a> |
+					<a asp-action="Delete" class="btn btn-danger" asp-route-id="@producto.IdProducto">Eliminar</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
